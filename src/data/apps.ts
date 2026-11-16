@@ -189,8 +189,8 @@ export const apps: App[] = [
     stage: 'available',
     releases: [
       { platform: 'web', status: 'available', url: 'https://memmamally-source.github.io/First-project/' },
-      // On the App Store (confirmed by the owner, 16 Nov 2026). Add its listing URL when known.
-      { platform: 'ios', status: 'available' },
+      // Listing URL supplied by the owner (16 Nov 2026).
+      { platform: 'ios', status: 'available', url: 'https://apps.apple.com/app/id6826669553' },
     ],
     privacyPolicyUrl: 'https://memmamally-source.github.io/First-project/privacy/',
     privacyPolicyDate: '2026-10-24',
