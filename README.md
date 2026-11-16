@@ -9,7 +9,7 @@ The official website of **Karoo Fox**: the company, its apps, and one place for 
 - It uses the owner's approved logo PNGs exactly; they are only resized, never redrawn (see [docs/BRAND.md](docs/BRAND.md)). Because the artwork has a white canvas, the site is light-only and every logo sits on white.
 - It was built from the brief in [docs/CLAUDE_MASTER_PROMPT.md](docs/CLAUDE_MASTER_PROMPT.md).
 
-> **Status: preview.** Company details such as the registration number, address, domain and email are placeholders. They show highlighted on the pages, and the site tells search engines not to index it until they are filled in. See [docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).
+> **Live** at https://memmamally-source.github.io/Karoo-Fox/; `karoofox.com` is being connected. The site deliberately shows no company or legal details (owner's instruction; see `CLAUDE.md`). Company emails appear once they exist.
 
 ## Why this stack
 
@@ -18,7 +18,7 @@ The official website of **Karoo Fox**: the company, its apps, and one place for 
 | Many similar pages (4 apps today, dozens later), each with stable support, privacy and deletion URLs | Astro generates all of them from one data file (`src/data/apps.ts`) |
 | GitHub Pages, low maintenance, fast, secure | Pure static HTML/CSS output with no JavaScript runtime and no server |
 | Non-developers can edit facts | Company details live in `src/config/company.ts`; app facts in `src/data/apps.ts`; news in Markdown |
-| Don't publish anything unverified | Placeholders are visible, `npm run readiness` lists every gap, and the deploy workflow refuses to publish until they're filled |
+| Don't publish anything unverified | Details that aren't available are simply left off, and the build fails on banned wording (see `CLAUDE.md`) |
 
 The alternatives were weaker. Plain HTML would mean copying the header, footer and five pages per app by hand. Next.js or another JavaScript framework adds a client runtime the site doesn't need. Firebase Hosting adds a dependency the site doesn't need.
 
@@ -28,12 +28,12 @@ The alternatives were weaker. Plain HTML would mean copying the header, footer a
 npm install
 npm run dev          # http://localhost:4321
 npm run check        # typecheck, unit tests, build, HTML/link/metadata checks, browser + accessibility tests
-npm run readiness    # what must be supplied before publishing (SITE_URL=https://… to check the domain too)
+npm run readiness    # optional items still worth adding (informational)
 npm run brand        # regenerate web/social images and favicons from the approved PNGs in brand/source/
 ```
 
 `npm run check` must pass before every commit. It covers:
-- **Unit tests:** the app-data rules, the company legal wording and the readiness logic.
+- **Unit tests:** the app-data rules, the company config (no registration details) and the readiness logic.
 - **`astro check`:** strict TypeScript.
 - **`scripts/verify-build.mjs`:** HTML validation (no inline styles), internal links and assets, one `<h1>` per page, and title, description, canonical URL and Open Graph image on every page. It also confirms that every stable app URL exists.
 - **`tests/browser.mjs`:** loads every page in Chromium at 320, 390, 768 and 1280 px. It fails on console errors, CSP violations, failed requests, images that don't load, horizontal scrolling, a logo placed on a non-white background, or axe WCAG 2.1 AA violations.
@@ -41,7 +41,7 @@ npm run brand        # regenerate web/social images and favicons from the approv
 ## Structure
 
 ```
-src/config/company.ts   Legal names, registration, address, emails (placeholders = null)
+src/config/company.ts   Public emails (null = not shown yet), founder visibility
 src/data/apps.ts        The app portfolio: status per platform, features, privacy summary, deletion steps
 src/content/news/       Announcements (Markdown, one file per post)
 src/pages/              Routes (see below)
@@ -69,7 +69,6 @@ docs/                   Master prompt, launch checklist, QA checklist, brand gui
 | Support Centre | `/support/` |
 | Delete your data (all apps) | `/support/data-deletion/` |
 | Contact | `/contact/` |
-| Company information | `/legal/` |
 | Privacy hub (all apps) | `/privacy/` |
 | Website privacy notice | `/privacy/website/` |
 | News | `/news/`, `/news/<slug>/` |
@@ -78,7 +77,7 @@ The slugs are `crossword-hub`, `oursome`, `research-tracker` and `stephd`. **Nev
 
 ## Common edits
 
-**Fill in company details.** Edit `src/config/company.ts`. When the CIPC confirms the name change, set `nameAmendmentComplete: true`; every legal statement on the site then switches to Karoo Fox (Pty) Ltd.
+**Add company emails.** Once the mailboxes exist, put them in `src/config/company.ts`; they then appear on the Contact, Support and Privacy pages.
 
 **Change an app's status.** Edit its `releases` in `src/data/apps.ts`, for example when Oursome goes live on the App Store:
 ```ts
@@ -105,7 +104,7 @@ To give it its own repository with its history:
    git subtree split --prefix=karoo-fox origin/claude/karoo-fox-website-jeovs4 -b karoo-fox-only
    git push https://github.com/memmamally-source/karoo-fox.git karoo-fox-only:main
    ```
-3. In the new repository, go to Settings → Pages → Source and choose **GitHub Actions**. Then run **Actions → Deploy website → Run workflow**. Tick *allow placeholders* only if you want a preview at `https://memmamally-source.github.io/karoo-fox/` before the details are filled in.
+3. In the new repository, go to Settings → Pages → Source and choose **GitHub Actions**. Then run **Actions → Deploy website → Run workflow**. 
 4. Delete the `karoo-fox/` folder and the branch from Oursome when you're happy.
 
 Deploying, connecting a domain and setting up business email are covered in [docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).

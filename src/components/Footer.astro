@@ -1,8 +1,7 @@
 ---
-import { company, entityStatement } from '../config/company.ts';
+import { company } from '../config/company.ts';
 import { apps } from '../data/apps.ts';
 import { appPaths, href } from '../lib/url.ts';
-import Detail from './Detail.astro';
 import Logo from './Logo.astro';
 const year = new Date().getFullYear();
 const copyrightYears = year > company.since ? `${company.since}–${year}` : `${company.since}`;
@@ -33,7 +32,6 @@ const copyrightYears = year > company.since ? `${company.since}–${year}` : `${
         <ul>
           <li><a href={href('/about/')}>About Karoo Fox</a></li>
           <li><a href={href('/news/')}>News</a></li>
-          <li><a href={href('/legal/')}>Company information</a></li>
           <li><a href={href('/privacy/')}>Privacy</a></li>
         </ul>
       </div>
@@ -41,9 +39,7 @@ const copyrightYears = year > company.since ? `${company.since}–${year}` : `${
   </div>
   <div class="footer-legal">
     <div class="container">
-      <p>{entityStatement()}</p>
-      <p>Registration number: <Detail value={company.registrationNumber} label="CIPC registration number" /></p>
-      <p>© {copyrightYears} {company.nameAmendmentComplete ? company.futureLegalName : company.currentLegalName}. Karoo Fox and the fox logo are brand marks of the company. App Store is a service mark of Apple Inc. Google Play is a trademark of Google LLC.</p>
+      <p>© {copyrightYears} {company.brand}. App Store is a service mark of Apple Inc. Google Play is a trademark of Google LLC.</p>
     </div>
   </div>
 </footer>

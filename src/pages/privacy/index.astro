@@ -37,7 +37,7 @@ import { appPaths, formatDate, href } from '../../lib/url.ts';
     <div class="narrow stack">
       <h2 id="site-privacy">This website</h2>
       <p>The Karoo Fox website sets no cookies and uses no analytics, advertising or forms. Read the <a href={href('/privacy/website/')}>website privacy notice</a>.</p>
-      <p>Privacy questions: <Detail value={company.emails.privacy} label="Privacy email" email /></p>
+      {company.emails.privacy && <p>Privacy questions: <Detail value={company.emails.privacy} email /></p>}
     </div>
   </section>
 </Base>

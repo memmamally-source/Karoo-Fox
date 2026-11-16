@@ -3,8 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Icon from '../components/Icon.astro';
 import { apps } from '../data/apps.ts';
-import { company, entityStatement } from '../config/company.ts';
-import { href } from '../lib/url.ts';
+import { company } from '../config/company.ts';
 
 const categories = [...new Set(apps.map((a) => a.category))];
 ---
@@ -38,13 +37,6 @@ const categories = [...new Set(apps.map((a) => a.category))];
         <div class="card"><div class="value-icon"><Icon name="layers" /></div><h3>Built to last</h3><p class="muted">Modern, maintainable technology on the web, iPhone and Android.</p></div>
         <div class="card"><div class="value-icon"><Icon name="chat" /></div><h3>Accountable</h3><p class="muted">One company behind every app, with clear support, privacy and contact details.</p></div>
       </div>
-    </div>
-  </section>
-  <section class="section" aria-labelledby="company-heading">
-    <div class="narrow stack">
-      <h2 id="company-heading">The company</h2>
-      <p>{entityStatement()}</p>
-      <p>Registration details, addresses and contacts are on our <a href={href('/legal/')}>company information</a> page.</p>
     </div>
   </section>
 </Base>

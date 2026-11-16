@@ -37,7 +37,7 @@ const p = appPaths(app.slug);
         </div>
       )}
       <h2>Contact</h2>
-      <p>For privacy questions about {app.name}, email <Detail value={company.emails.privacy ?? app.supportEmail ?? null} label="Privacy email" email />.</p>
+      {(company.emails.privacy ?? app.supportEmail) && <p>For privacy questions about {app.name}, email <Detail value={company.emails.privacy ?? app.supportEmail} email />.</p>}
       {app.privacyPolicyUrl && <p class="muted">Summary checked against the published policy on {formatDate(app.verifiedOn)}.</p>}
     </div>
   </section>

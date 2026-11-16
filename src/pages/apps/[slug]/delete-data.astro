@@ -2,7 +2,6 @@
 import type { GetStaticPaths } from 'astro';
 import Base from '../../../layouts/Base.astro';
 import PageHeader from '../../../components/PageHeader.astro';
-import Detail from '../../../components/Detail.astro';
 import { apps, getApp } from '../../../data/apps.ts';
 import { company } from '../../../config/company.ts';
 import { appPaths, href } from '../../../lib/url.ts';
@@ -36,9 +35,7 @@ const body = encodeURIComponent(`Please delete my ${app.name} account and associ
           <p>Email us from the address linked to your account and we’ll delete it for you{app.deletionByEmailDays ? ` within ${app.deletionByEmailDays} days` : ''}. We may ask you to confirm the request to protect your account.</p>
           {requestEmail ? (
             <p><a class="button button--primary" href={`mailto:${requestEmail}?subject=${subject}&body=${body}`}>Email a deletion request</a></p>
-          ) : (
-            <p>Email: <Detail value={null} label="Privacy email" /></p>
-          )}
+          ) : null}
         </>
       )}
     </div>

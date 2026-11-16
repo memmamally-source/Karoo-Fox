@@ -25,7 +25,7 @@ import { appPaths, href } from '../../lib/url.ts';
                   <td><a href={href(p.support)}>Help and FAQs</a></td>
                   <td><a href={href(p.privacy)}>Privacy policy</a></td>
                   <td><a href={href(p.deleteData)}>Delete data</a></td>
-                  <td><Detail value={app.supportEmail ?? company.emails.support} label="Support email" email /></td>
+                  <td><Detail value={app.supportEmail ?? company.emails.support} email /></td>
                 </tr>
               );
             })}
@@ -47,8 +47,8 @@ import { appPaths, href } from '../../lib/url.ts';
       </div>
       <div class="card">
         <h2 class="h3">Still need help?</h2>
-        <p>Email the app’s support address above, or contact Karoo Fox directly.</p>
-        <p><strong>Support:</strong> <Detail value={company.emails.support} label="Support email" email /></p>
+        <p>Email the app’s support address above, or see our contact page.</p>
+        {company.emails.support && <p><strong>Support:</strong> <Detail value={company.emails.support} email /></p>}
         <p><a href={href('/contact/')}>All contact options</a></p>
       </div>
     </div>

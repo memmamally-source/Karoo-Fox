@@ -5,8 +5,7 @@ import '@fontsource/poppins/700.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { company, legalName } from '../config/company.ts';
-import { hasVisiblePlaceholders } from '../lib/readiness.ts';
+import { company } from '../config/company.ts';
 import { href } from '../lib/url.ts';
 
 interface Props {
@@ -22,9 +21,7 @@ const { title, description, structuredData = [], noindex = false, ogType = 'webs
 const fullTitle = title === company.brand ? `${company.brand} — Thoughtful software for everyday life` : `${title} · ${company.brand}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(href('/og-image.png'), Astro.site).href;
-const placeholders = hasVisiblePlaceholders();
-// Pages are hidden from search engines while company details are placeholders.
-const robots = noindex || placeholders ? 'noindex, nofollow' : 'index, follow';
+const robots = noindex ? 'noindex, nofollow' : 'index, follow';
 const isProd = import.meta.env.PROD;
 const csp = [
   "default-src 'self'",
@@ -43,11 +40,9 @@ const organization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: company.brand,
-  legalName: legalName(),
   url: new URL(href('/'), Astro.site).href,
   logo: new URL(href('/brand/karoo-fox-logo-1280.png'), Astro.site).href,
   ...(company.emails.general ? { email: company.emails.general } : {}),
-  ...(company.address ? { address: { '@type': 'PostalAddress', streetAddress: company.address.join(', '), addressCountry: 'ZA' } } : { address: { '@type': 'PostalAddress', addressCountry: 'ZA' } }),
 };
 const jsonLd = [organization, ...structuredData];
 ---
@@ -86,9 +81,6 @@ const jsonLd = [organization, ...structuredData];
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    {placeholders && (
-      <aside class="preview-banner" aria-label="Preview notice">Preview: some company details are still being confirmed and are highlighted on the page.</aside>
-    )}
     <Header />
     <main id="main" tabindex="-1">
       <slot />

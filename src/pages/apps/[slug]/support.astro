@@ -47,7 +47,7 @@ const faqPage = {
         <div class="card">
           <h2 class="h3">Contact {app.name} support</h2>
           <p>Email us and we’ll reply as soon as we can. Please include your device, the app version and what you were trying to do.</p>
-          <p><strong>Email:</strong> <Detail value={supportEmail} label="Support email" email /></p>
+          {supportEmail && <p><strong>Email:</strong> <Detail value={supportEmail} email /></p>}
           {app.supportPageUrl && <p>More help: <a href={app.supportPageUrl} rel="noopener">{app.name} help pages</a></p>}
         </div>
         <div class="card">

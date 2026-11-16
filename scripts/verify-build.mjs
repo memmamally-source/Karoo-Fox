@@ -50,7 +50,9 @@ for (const file of htmlFiles) {
   // Owner instructions (16 Nov 2026): the company is Karoo Fox (Pty) Ltd (never
   // describe it as a brand of EM Medical Group), and the album app ("In
   // Pictures") must not appear anywhere on the website.
-  for (const banned of [/EM Medical/i, /In Pictures/i, /in-pictures/i, /scrapbook/i, /photo album app/i]) {
+  // Also (owner, 16 Nov 2026): no company/legal details or "not confirmed"
+  // wording anywhere on the site.
+  for (const banned of [/EM Medical/i, /In Pictures/i, /in-pictures/i, /scrapbook/i, /photo album app/i, /to be supplied/i, /being confirmed/i, /Preview:/, /registration number/i, /CIPC/i, /\(Pty\) Ltd/i, /registered in South Africa/i]) {
     if (banned.test(html)) problems.push(`${rel}: contains banned text ${banned}`);
   }
   if (rel === '404.html') continue;
@@ -60,11 +62,10 @@ for (const file of htmlFiles) {
   if (!/<meta name="description" content="[^"]{30,}"/.test(html)) problems.push(`${rel}: missing or short description`);
   if (!/<link rel="canonical" href="https?:\/\//.test(html)) problems.push(`${rel}: missing canonical`);
   if (!/<meta property="og:image" content="https?:\/\//.test(html)) problems.push(`${rel}: missing og:image`);
-  if (/to be supplied\]/.test(html) && !/name="robots" content="noindex/.test(html)) problems.push(`${rel}: placeholder shown on an indexable page`);
 }
 
 // Stable URLs referenced from App Store Connect / Play Console.
-const required = ['/', '/apps/', '/about/', '/support/', '/support/data-deletion/', '/contact/', '/privacy/', '/privacy/website/', '/legal/', '/news/', ...apps.flatMap((a) => Object.values(appPaths(a.slug)))];
+const required = ['/', '/apps/', '/about/', '/support/', '/support/data-deletion/', '/contact/', '/privacy/', '/privacy/website/', '/news/', ...apps.flatMap((a) => Object.values(appPaths(a.slug)))];
 for (const p of required) if (!fs.existsSync(path.join(dist, p, 'index.html'))) problems.push(`missing required page ${p}`);
 for (const f of ['sitemap-index.xml', 'robots.txt', 'favicon.ico', 'favicon-32.png', 'brand/karoo-fox-logo-320.webp', 'brand/karoo-fox-icon-512.webp', 'og-image.png', 'apple-touch-icon.png', 'site.webmanifest', '404.html', 'app-accents.css']) {
   if (!fs.existsSync(path.join(dist, f))) problems.push(`missing ${f}`);

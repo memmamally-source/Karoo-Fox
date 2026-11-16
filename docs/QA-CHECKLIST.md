@@ -7,7 +7,7 @@ Status as of 16 Nov 2026. Re-run `npm run check` after every change; all of it m
 | Check | Result |
 | --- | --- |
 | TypeScript (`astro check`, strictest settings) | ✅ 0 errors |
-| Unit tests: app-data rules, App Store statuses, company name (Karoo Fox (Pty) Ltd, no EM Medical Group), readiness logic, URLs | ✅ passing |
+| Unit tests: app-data rules, App Store statuses, company config (no registration details), readiness logic, URLs | ✅ passing |
 | HTML validation of every page (html-validate, recommended rules, no inline styles) | ✅ 32 pages |
 | Internal links and assets resolve | ✅ |
 | No page mentions EM Medical Group or the album app (build fails if one does) | ✅ |
@@ -45,10 +45,6 @@ Status as of 16 Nov 2026. Re-run `npm run check` after every change; all of it m
 - [ ] **Founder's name:** decide whether to name the founder on the About page. It is hidden for now; set `founder.show: true` in `src/config/company.ts` to show it.
 - [ ] **App facts:** before launch, re-check each app's status and store links in `src/data/apps.ts`. In particular, add Research Tracker's App Store URL, check that the Crossword Hub and Oursome App Store links open the right listings (Apple's site couldn't be reached from this session), and confirm whether Crossword Hub's Duels are live.
 
-## Blocks public launch (`npm run readiness`)
+## Not shown on the site (owner's instruction)
 
-- [ ] CIPC registration number
-- [ ] Business address, approved by the owner for publication
-- [ ] Business, support and privacy emails on the company domain
-
-Until these are done, the site shows a preview banner, highlights the missing details and tells search engines not to index it.
+No registration or CIPC number, no address and no legal-entity wording appear on the site; the build fails if they do. Company emails appear automatically once they're added to `src/config/company.ts`.

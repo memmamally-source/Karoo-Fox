@@ -1,6 +1,6 @@
 # Karoo Fox launch checklist
 
-What must happen before the website can be public, and before it can support the Apple organisation enrolment and the Google Play move. Run `SITE_URL=https://<your-domain> npm run readiness` at any time to see what is still outstanding.
+What must happen before the website can be public, and before it can support the Apple organisation enrolment and the Google Play move. Run `npm run readiness` at any time for optional items still to add.
 
 Nothing here has been bought, registered or submitted. Each step that costs money or creates an account is for you to decide and do.
 
@@ -8,9 +8,6 @@ Nothing here has been bought, registered or submitted. Each step that costs mone
 
 - [x] Company name changed to **Karoo Fox (Pty) Ltd** (confirmed by the owner, 16 Nov 2026). The site names Karoo Fox (Pty) Ltd as the company everywhere (`nameAmendmentComplete: true`).
 - [ ] Keep the CIPC certificate showing the new name; Apple and Dun & Bradstreet will ask for it.
-- [ ] Add the **registration number** (`registrationNumber`). The registration number stays the same after a name change.
-- [ ] Add the **business address** (`address`). Use exactly the same address that will appear on the D-U-N-S record.
-- [ ] Name the **POPIA Information Officer** (`informationOfficer`). This is the head of the company unless the role is delegated. Register them with the Information Regulator if you haven't already.
 
 ## 2. Domain
 
@@ -57,9 +54,9 @@ Whichever provider you choose:
 
 ## 4. Publish
 
-- [ ] Run `npm run check` (all green) and `SITE_URL=https://<domain> npm run readiness` (it should report "Ready to publish").
+- [ ] Run `npm run check` (all green).
 - [ ] Merge to `main` in the website repository; the workflow builds, tests and deploys.
-- [ ] Open the site on a phone and a computer. Check that the preview banner is gone and nothing is highlighted as "to be supplied".
+- [ ] Open the site on a phone and a computer.
 - [ ] Check that `https://<domain>/robots.txt` allows crawling and lists the sitemap, then submit the sitemap in Google Search Console (free).
 
 ## 5. Apple Developer: Individual → Organization
@@ -69,7 +66,7 @@ Apple converts an existing Individual membership to an Organization through Appl
 - [x] **A legal entity in the company's name:** Karoo Fox (Pty) Ltd.
 - [ ] **A D-U-N-S number** for the company. Its legal name and address must match the CIPC record exactly. Look it up or request one free through Apple's D-U-N-S lookup tool. If the company already has a D-U-N-S number under its previous name, ask Dun & Bradstreet to update it to Karoo Fox (Pty) Ltd. Updates can take several days to weeks before Apple sees them.
 - [ ] **Legal binding authority.** You must be able to sign for the company, for example as a director.
-- [ ] **A public website on the company's domain.** This site, live on the custom domain over HTTPS, with no preview banner. It must name the company and show contact details, support and privacy policy pages.
+- [ ] **A public website on the company's domain.** This site, live on the custom domain over HTTPS, with contact details, support and privacy policy pages. Apple verifies the legal entity through the D-U-N-S record, not the website, so the CIPC number stays off the site.
 - [ ] **A work email on the same domain**, for Apple to contact you.
 
 After approval, the App Store seller name comes from the verified legal entity. Apple decides what it shows, so don't assume a particular display name.

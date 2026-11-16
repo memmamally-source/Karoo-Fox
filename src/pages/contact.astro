@@ -2,42 +2,42 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Detail from '../components/Detail.astro';
-import { company, legalName } from '../config/company.ts';
-import { href } from '../lib/url.ts';
+import { company } from '../config/company.ts';
+import { apps } from '../data/apps.ts';
+import { appPaths, href } from '../lib/url.ts';
+const companyContacts = [
+  { title: 'General enquiries', text: 'Partnerships, press and other enquiries.', email: company.emails.general },
+  { title: 'Support', text: 'Questions about any of our apps.', email: company.emails.support },
+  { title: 'Privacy and data requests', text: 'Access, correction or deletion of your personal information.', email: company.emails.privacy },
+].filter((c) => c.email);
 ---
-<Base title="Contact" description="How to contact Karoo Fox for app support, privacy requests and business enquiries.">
-  <PageHeader title="Contact us" eyebrow="Get in touch" lead="We read every message. For help with a specific app, the Support Centre is the fastest route." crumbs={[{ label: 'Contact' }]} />
-  <section class="section" aria-label="Contact details">
-    <div class="container grid">
-      <div class="card contact-item">
-        <h2 class="h3">App support</h2>
-        <p class="muted">Problems, questions or feedback about one of our apps.</p>
-        <p><Detail value={company.emails.support} label="Support email" email /></p>
-        <p><a href={href('/support/')}>Visit the Support Centre</a></p>
+<Base title="Contact" description="How to contact Karoo Fox for app support, privacy requests and other enquiries.">
+  <PageHeader title="Contact us" eyebrow="Get in touch" lead="We read every message. For help with an app, email that app’s support address below." crumbs={[{ label: 'Contact' }]} />
+  {companyContacts.length > 0 && (
+    <section class="section" aria-label="Karoo Fox contacts">
+      <div class="container grid">
+        {companyContacts.map((c) => (
+          <div class="card contact-item">
+            <h2 class="h3">{c.title}</h2>
+            <p class="muted">{c.text}</p>
+            <p><Detail value={c.email} email /></p>
+          </div>
+        ))}
       </div>
-      <div class="card contact-item">
-        <h2 class="h3">Privacy and data requests</h2>
-        <p class="muted">Access, correction or deletion of your personal information.</p>
-        <p><Detail value={company.emails.privacy} label="Privacy email" email /></p>
-        <p><a href={href('/support/data-deletion/')}>Delete your data</a></p>
+    </section>
+  )}
+  <section class="section" aria-labelledby="app-support">
+    <div class="container">
+      <h2 id="app-support">App support</h2>
+      <div class="grid">
+        {apps.map((app) => (
+          <div class="card contact-item">
+            <h3>{app.name}</h3>
+            {app.supportEmail && <p><Detail value={app.supportEmail} email /></p>}
+            <p><a href={href(appPaths(app.slug).support)}>Help and FAQs</a> · <a href={href(appPaths(app.slug).deleteData)}>Delete your data</a></p>
+          </div>
+        ))}
       </div>
-      <div class="card contact-item">
-        <h2 class="h3">Business and partnerships</h2>
-        <p class="muted">Partnerships, press and other enquiries.</p>
-        <p><Detail value={company.emails.general} label="Business email" email /></p>
-        {company.phone && <p>Phone: <a href={`tel:${company.phone.replace(/\s/g, '')}`}>{company.phone}</a></p>}
-      </div>
-    </div>
-  </section>
-  <section class="section section--sand" aria-labelledby="company-details">
-    <div class="narrow">
-      <h2 id="company-details">Company details</h2>
-      <dl class="facts">
-        <div><dt>Company</dt><dd>{legalName()}</dd></div>
-        <div><dt>Trading as</dt><dd>{company.brand}</dd></div>
-        <div><dt>Registration number</dt><dd><Detail value={company.registrationNumber} label="CIPC registration number" /></dd></div>
-        <div><dt>Address</dt><dd>{company.address ? <address>{company.address.map((l) => <>{l}<br /></>)}{company.country}</address> : <Detail value={null} label="Business address" />}</dd></div>
-      </dl>
     </div>
   </section>
 </Base>

@@ -47,6 +47,6 @@ const supportEmail = app.supportEmail ?? company.emails.support;
       {app.termsUrl && <li><a href={app.termsUrl} rel="noopener">Terms of use <span aria-hidden="true">↗</span></a></li>}
       {app.website && <li><a href={app.website} rel="noopener">Official website <span aria-hidden="true">↗</span></a></li>}
     </ul>
-    <p class="muted">Email: <Detail value={supportEmail} label="Support email" email /></p>
+    {supportEmail && <p class="muted">Email: <Detail value={supportEmail} email /></p>}
   </div>
 </aside>

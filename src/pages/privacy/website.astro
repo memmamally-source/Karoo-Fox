@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Detail from '../../components/Detail.astro';
-import { company, legalName } from '../../config/company.ts';
+import { company } from '../../config/company.ts';
 import { apps } from '../../data/apps.ts';
 import { appPaths, formatDate, href } from '../../lib/url.ts';
 
@@ -15,7 +15,7 @@ const updated = '2026-11-16';
     <div class="narrow prose">
       <p class="muted">Last updated {formatDate(updated)}</p>
       <h2>Who we are</h2>
-      <p>This website is operated by {legalName()}, a private company registered in South Africa (registration number <Detail value={company.registrationNumber} label="CIPC registration number" />). We are the responsible party for personal information processed through this website under South Africa’s Protection of Personal Information Act (POPIA).</p>
+      <p>This website is operated by {company.brand}, a South African software company. We are the responsible party for personal information processed through this website under South Africa’s Protection of Personal Information Act (POPIA).</p>
       <h2>What this website collects</h2>
       <ul>
         <li><strong>No cookies, analytics or advertising.</strong> This website does not set cookies, does not use analytics or tracking tools and does not show advertising.</li>
@@ -26,7 +26,7 @@ const updated = '2026-11-16';
       <h2>Fonts and external content</h2>
       <p>All fonts and images are served from this website. Links to app stores and app websites take you to services with their own privacy policies.</p>
       <h2>Your rights</h2>
-      <p>You may ask us for access to, correction of or deletion of personal information we hold about you, and you may object to its processing. Email <Detail value={company.emails.privacy} label="Privacy email" email />. You also have the right to complain to the Information Regulator of South Africa (inforegulator.org.za), or to the data-protection authority where you live.</p>
+      <p>You may ask us for access to, correction of or deletion of personal information we hold about you, and you may object to its processing. {company.emails.privacy ? <>Email <Detail value={company.emails.privacy} email />.</> : <>Contact us through the <a href={href('/contact/')}>contact page</a>.</>} You also have the right to complain to the Information Regulator of South Africa (inforegulator.org.za), or to the data-protection authority where you live.</p>
       <h2>Our apps</h2>
       <p>Our apps collect different information depending on what they do. Read the policy for the app you use:</p>
       <ul>
