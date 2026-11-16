@@ -19,7 +19,7 @@ export const company: Company = {
   country: 'South Africa',
   emails: {
     general: null,
-    support: null,
+    support: 'support@karoofox.com', // created by the owner, 16 Nov 2026
     privacy: null,
   },
   /** Founder shown on the About page only if `show` is true (owner's choice). */

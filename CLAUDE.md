@@ -6,5 +6,5 @@ These are the owner's instructions. They override older notes, including `docs/C
 2. **The album app ("In Pictures") is not on the website.** Don't add it back, or mention it, unless the owner asks. `scripts/verify-build.mjs` fails the build if either rule is broken.
 3. **The logo is the approved artwork.** Every logo image is generated from `brand/source/Karoo_Fox_Logo_High_Resolution_6144x4096.png` by `npm run brand`: blank canvas trimmed, then resized, never redrawn. The homepage shows the complete logo (fox and wordmark). Logo images sit on white backgrounds only. The SVG in `brand/vector-candidate/` is not approved.
 4. **App Store:** Crossword Hub (id6825187540), Oursome (id6826843084) and Research Tracker (id6826669553) are on the App Store. Never invent store links.
-5. **Never invent details.** Emails stay `null` in `src/config/company.ts`, and are simply not shown, until real mailboxes exist. If the CIPC number is ever needed (for Apple or D-U-N-S), the owner provides it privately; it never goes on the site.
+5. **Never invent details.** Only real mailboxes go in `src/config/company.ts` (support@karoofox.com exists); others stay `null` and aren't shown. If the CIPC number is ever needed (for Apple or D-U-N-S), the owner provides it privately; it never goes on the site.
 6. Run `npm run check` before every commit.
