@@ -218,7 +218,7 @@ export const apps: App[] = [
       'An interactive medical-education platform for USMLE preparation, starting with Step 1, using question-based learning and game-like study modes.',
     description: [
       'StePhD turns USMLE Step 1 revision into short, game-like sessions: a Daily Mixed set, a Daily Mini and study games, with streaks, progress and study-time tracking.',
-      'The current release is a preview with the daily modes free to use. Further game modes, full Step 1 access, Step 2 CK and Step 3 are planned.',
+      'The daily modes are free to use. Further game modes, full Step 1 access, Step 2 CK and Step 3 are planned.',
     ],
     features: [
       'Daily Mixed and Daily Mini question sets',
@@ -227,10 +227,11 @@ export const apps: App[] = [
       'Optional sign-in to sync progress across devices',
     ],
     audience: 'Medical students preparing for the USMLE (not directed at children under 13).',
-    stage: 'preview',
+    stage: 'available',
     releases: [
       { platform: 'web', status: 'preview', url: 'https://stephd.app' },
-      { platform: 'ios', status: 'in-review', note: 'iPhone app submitted to Apple for review' },
+      // Live on the App Store (owner, 17 Nov 2026).
+      { platform: 'ios', status: 'available', url: 'https://apps.apple.com/app/id6834067841' },
       { platform: 'android', status: 'testing', note: 'Android app in closed testing' },
     ],
     website: 'https://stephd.app',
@@ -248,7 +249,7 @@ export const apps: App[] = [
     deletionSteps: ['Open StePhD and sign in.', 'Go to Profile → Delete account and confirm.'],
     deletionByEmailDays: 30,
     faqs: [
-      { q: 'Is StePhD available in the app stores?', a: 'Not yet. The iPhone app is in Apple’s review and the Android app is in closed testing.' },
+      { q: 'Where can I get StePhD?', a: 'StePhD is on the App Store for iPhone. The Android app is in closed testing.' },
       { q: 'Which exams does it cover?', a: 'USMLE Step 1 today. Step 2 CK and Step 3 are planned.' },
     ],
     disclaimer:

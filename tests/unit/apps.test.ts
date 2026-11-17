@@ -42,5 +42,6 @@ test('App Store statuses confirmed by the owner (16 Nov 2026)', () => {
   assert.equal(ios('oursome').status, 'available');
   assert.equal(ios('research-tracker').status, 'available');
   assert.equal(ios('research-tracker').url, 'https://apps.apple.com/app/id6826669553');
+  assert.equal(ios('stephd').url, 'https://apps.apple.com/app/id6834067841');
   assert.ok(!apps.some((a) => /photo|picture|album|scrapbook/i.test(a.slug + a.name)), 'the album app is not on the site');
 });
