@@ -97,7 +97,8 @@ export const apps: App[] = [
     releases: [
       { platform: 'web', status: 'available', url: 'https://crosswordhub.app' },
       { platform: 'ios', status: 'available', url: 'https://apps.apple.com/app/id6825187540' },
-      { platform: 'android', status: 'planned' },
+      // Live on Google Play under the Karoo Fox developer name (owner, 17 Nov 2026).
+      { platform: 'android', status: 'available', url: 'https://play.google.com/store/apps/details?id=app.crosswordhub' },
     ],
     website: 'https://crosswordhub.app',
     privacyPolicyUrl: 'https://crosswordhub.app/privacy/',
@@ -114,7 +115,7 @@ export const apps: App[] = [
     deletionSteps: ['Open Crossword Hub and sign in.', 'Go to Account → Delete account and confirm.'],
     faqs: [
       { q: 'Do I need an account to play?', a: 'No. You can play without one; your progress is then kept on your device only.' },
-      { q: 'Is Crossword Hub on Android?', a: 'Not yet. An Android app is planned; in the meantime you can play in any browser at crosswordhub.app.' },
+      { q: 'Is Crossword Hub on Android?', a: 'Yes. Crossword Hub is on Google Play, as well as the App Store and the web at crosswordhub.app.' },
       { q: 'Are there adverts?', a: 'No. Crossword Hub has no advertising.' },
     ],
     accent: '#2E5E3E',
