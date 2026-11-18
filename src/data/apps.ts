@@ -124,7 +124,6 @@ export const apps: App[] = [
   {
     slug: 'oursome',
     name: 'Oursome',
-    provisionalName: true,
     category: 'Family & home',
     tagline: 'A calm organiser for couples and families.',
     summary:
@@ -164,7 +163,7 @@ export const apps: App[] = [
       { q: 'Where can I get Oursome?', a: 'Oursome is on the App Store for iPhone and on the web at oursome.org. The Android app is in testing.' },
       { q: 'Do I need an account?', a: 'No. An account is only needed if you want to share with your family.' },
     ],
-    accent: '#B95F49',
+    accent: '#1769AA', // Oursome 1.1.0 blue-and-teal rebrand (ocean blue)
     verifiedOn: '2026-11-16',
   },
   {
