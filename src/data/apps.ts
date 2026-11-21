@@ -144,7 +144,8 @@ export const apps: App[] = [
     releases: [
       { platform: 'web', status: 'available', url: 'https://oursome.org' },
       { platform: 'ios', status: 'available', url: 'https://apps.apple.com/app/id6826843084' },
-      { platform: 'android', status: 'testing', note: 'Android app in closed testing' },
+      // Live on Google Play under the Karoo Fox developer name (owner, 21 Nov 2026).
+      { platform: 'android', status: 'available', url: 'https://play.google.com/store/apps/details?id=org.oursome.app' },
     ],
     website: 'https://oursome.org',
     privacyPolicyUrl: 'https://oursome.org/privacy/',
@@ -160,7 +161,7 @@ export const apps: App[] = [
     hasAccounts: true,
     deletionSteps: ['Open Oursome.', 'Go to Settings → Account → Delete account and data, and confirm.'],
     faqs: [
-      { q: 'Where can I get Oursome?', a: 'Oursome is on the App Store for iPhone and on the web at oursome.org. The Android app is in testing.' },
+      { q: 'Where can I get Oursome?', a: 'Oursome is on the App Store for iPhone, on Google Play for Android, and on the web at oursome.org.' },
       { q: 'Do I need an account?', a: 'No. An account is only needed if you want to share with your family.' },
     ],
     accent: '#1769AA', // Oursome 1.1.0 blue-and-teal rebrand (ocean blue)
