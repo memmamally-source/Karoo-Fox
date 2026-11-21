@@ -207,7 +207,7 @@ export const apps: App[] = [
     faqs: [
       { q: 'What happens to shared projects when I delete my account?', a: 'Projects you own are deleted for everyone you shared them with. Export a backup first if you need one.' },
     ],
-    accent: '#1E3A66',
+    accent: '#0F2747', // Research Tracker "R." logo navy (logo brief, Nov 2026)
     verifiedOn: '2026-11-16',
   },
   {
